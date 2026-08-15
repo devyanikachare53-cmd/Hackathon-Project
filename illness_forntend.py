@@ -80,7 +80,7 @@ fever = st.number_input(
     "🌡️ Fever (°F)",
     min_value=90.0,
     max_value=110.0,
-    value=98.6,
+    value=103.6,
     step=0.1
 )
 
@@ -93,7 +93,7 @@ headache = st.number_input(
     "🤕 Headache Severity (0–10)",
     min_value=0.0,
     max_value=10.0,
-    value=0.0,
+    value=8.7,
     step=0.1
 )
 
@@ -106,7 +106,7 @@ cough = st.number_input(
     "😷 Cough Severity (0–10)",
     min_value=0.0,
     max_value=10.0,
-    value=0.0,
+    value=2.9,
     step=0.1
 )
 
@@ -119,7 +119,7 @@ fatigue = st.number_input(
     "😴 Fatigue Severity (0–10)",
     min_value=0.0,
     max_value=10.0,
-    value=0.0,
+    value=6.5,
     step=0.1
 )
 
@@ -132,7 +132,7 @@ body_pain = st.number_input(
     "💪 Body Pain Severity (0–10)",
     min_value=0.0,
     max_value=10.0,
-    value=0.0,
+    value=2.2,
     step=0.1
 )
 
