@@ -5,7 +5,10 @@
 import streamlit as st
 import pandas as pd
 import joblib
+<<<<<<< HEAD
 import os
+=======
+>>>>>>> a966bea7242938b8c332100cd5d444f566fd1f0c
 
 
 # ============================================================
@@ -13,13 +16,19 @@ import os
 # ============================================================
 
 st.set_page_config(
+<<<<<<< HEAD
     page_title="Common Illness Disease Prediction System ",
     page_icon="🏥",
+=======
+    page_title="Kidney Disease Prediction",
+    page_icon="🩺",
+>>>>>>> a966bea7242938b8c332100cd5d444f566fd1f0c
     layout="centered"
 )
 
 
 # ============================================================
+<<<<<<< HEAD
 # 3. LOAD TRAINED MODEL AND SCALER
 # ============================================================
 
@@ -54,16 +63,32 @@ def load_model():
 
 
 model, scaler = load_model()
+=======
+# 3. LOAD TRAINED MODEL FILES
+# ============================================================
+
+model = joblib.load("kidney_model.pkl")
+scaler = joblib.load("kidney_scaler.pkl")
+columns = joblib.load("kidney_columns.pkl")
+>>>>>>> a966bea7242938b8c332100cd5d444f566fd1f0c
 
 
 # ============================================================
 # 4. APPLICATION HEADER
 # ============================================================
 
+<<<<<<< HEAD
 st.title("🏥Common Illness Disease Prediction System ")
 
 st.write(
     "AI-powered preliminary prediction of common illnesses"
+=======
+st.title("🩺 Kidney Disease Prediction System")
+
+st.write(
+    "Enter patient health details to predict the possibility "
+    "of Chronic Kidney Disease."
+>>>>>>> a966bea7242938b8c332100cd5d444f566fd1f0c
 )
 
 st.divider()
@@ -75,6 +100,7 @@ st.divider()
 
 with st.sidebar:
 
+<<<<<<< HEAD
     st.header("Common Illness Disease Prediction System")
 
     st.write(
@@ -97,11 +123,32 @@ with st.sidebar:
 
 # ============================================================
 # 6. PATIENT INFORMATION
+=======
+    st.header("🩺 Kidney Disease Prediction")
+
+    st.write(
+        "AI-powered preliminary kidney disease prediction system."
+    )
+
+    st.divider()
+
+    st.subheader("About")
+
+    st.write(
+        "This application predicts the possibility of Chronic "
+        "Kidney Disease using selected health parameters."
+    )
+
+
+# ============================================================
+# 6. KIDNEY DISEASE INPUT FORM
+>>>>>>> a966bea7242938b8c332100cd5d444f566fd1f0c
 # ============================================================
 
 st.subheader("Patient Information")
 
 
+<<<<<<< HEAD
 # ------------------------------------------------------------
 # Fever
 # ------------------------------------------------------------
@@ -110,11 +157,77 @@ fever = st.number_input(
     "Fever (%)",
     min_value=0.0,
     max_value=100.0,
+=======
+# Age
+age = st.number_input(
+    "Age",
+    min_value=0,
+    max_value=120,
+    value=0,
+    step=1
+)
+
+
+# Creatinine
+creatinine = st.number_input(
+    "Creatinine Level",
+    min_value=0.0,
+    max_value=20.0,
+    value=0.0,
+    step=0.1
+)
+
+
+# BUN
+bun = st.number_input(
+    "BUN Level",
+    min_value=0.0,
+    max_value=200.0,
+    value=0.0,
+    step=0.1
+)
+
+
+# Diabetes
+diabetes = st.selectbox(
+    "Do you have Diabetes?",
+    ["No", "Yes"]
+)
+
+diabetes_value = 1 if diabetes == "Yes" else 0
+
+
+# Hypertension
+hypertension = st.selectbox(
+    "Do you have Hypertension?",
+    ["No", "Yes"]
+)
+
+hypertension_value = 1 if hypertension == "Yes" else 0
+
+
+# GFR
+gfr = st.number_input(
+    "GFR",
+    min_value=0.0,
+    max_value=200.0,
+    value=0.0,
+    step=0.1
+)
+
+
+# Urine Output
+urine_output = st.number_input(
+    "Urine Output",
+    min_value=0.0,
+    max_value=5000.0,
+>>>>>>> a966bea7242938b8c332100cd5d444f566fd1f0c
     value=0.0,
     step=1.0
 )
 
 
+<<<<<<< HEAD
 # ------------------------------------------------------------
 # Headache
 # ------------------------------------------------------------
@@ -195,22 +308,35 @@ else:
 
 # ============================================================
 # 8. PREDICT BUTTON
+=======
+# ============================================================
+# 7. PREDICT BUTTON
+>>>>>>> a966bea7242938b8c332100cd5d444f566fd1f0c
 # ============================================================
 
 st.divider()
 
 predict_button = st.button(
+<<<<<<< HEAD
     "Predict Disease",
+=======
+    "🔍 Predict Kidney Disease",
+>>>>>>> a966bea7242938b8c332100cd5d444f566fd1f0c
     use_container_width=True
 )
 
 
 # ============================================================
+<<<<<<< HEAD
 # 9. PREDICTION
+=======
+# 8. PREDICTION
+>>>>>>> a966bea7242938b8c332100cd5d444f566fd1f0c
 # ============================================================
 
 if predict_button:
 
+<<<<<<< HEAD
     # --------------------------------------------------------
     # Create input DataFrame
     #
@@ -357,12 +483,41 @@ if predict_button:
 
     # ========================================================
     # 14. DISPLAY RESULT
+=======
+    # Create input DataFrame
+    input_data = pd.DataFrame({
+        "Age": [age],
+        "Creatinine_Level": [creatinine],
+        "BUN": [bun],
+        "Diabetes": [diabetes_value],
+        "Hypertension": [hypertension_value],
+        "GFR": [gfr],
+        "Urine_Output": [urine_output]
+    })
+
+
+    # Arrange columns in training order
+    input_data = input_data[columns]
+
+
+    # Scale input
+    input_scaled = scaler.transform(input_data)
+
+
+    # Make prediction
+    prediction = model.predict(input_scaled)[0]
+
+
+    # ========================================================
+    # 9. DISPLAY RESULT
+>>>>>>> a966bea7242938b8c332100cd5d444f566fd1f0c
     # ========================================================
 
     st.divider()
 
     st.subheader("Prediction Result")
 
+<<<<<<< HEAD
 
     # --------------------------------------------------------
     # Predicted Disease
@@ -399,11 +554,45 @@ if predict_button:
         st.write(
             "💊 Do not start or stop medication without "
             "professional medical advice."
+=======
+    if prediction == 1:
+
+        st.error("⚠️ CKD Detected")
+
+    else:
+
+        st.success("✅ Normal - No CKD Detected")
+
+
+    # ========================================================
+    # 10. HEALTH GUIDANCE
+    # ========================================================
+
+    st.subheader("💡 Health Guidance")
+
+    if prediction == 1:
+
+        st.write(
+            "• 🩺 Consult a healthcare professional for proper kidney evaluation."
+        )
+
+        st.write(
+            "• 💧 Follow appropriate hydration advice from your healthcare provider."
+        )
+
+        st.write(
+            "• 🍬 Keep blood sugar under control if you have diabetes."
+        )
+
+        st.write(
+            "• ❤️ Monitor and manage your blood pressure regularly."
+>>>>>>> a966bea7242938b8c332100cd5d444f566fd1f0c
         )
 
     else:
 
         st.write(
+<<<<<<< HEAD
             "😊 No significant illness pattern was predicted."
         )
 
@@ -422,3 +611,20 @@ if predict_button:
         st.write(
             "🔍 Continue monitoring your health and symptoms."
         )
+=======
+            "• 🥗 Maintain a healthy and balanced diet."
+        )
+
+        st.write(
+            "• 💧 Stay adequately hydrated according to your health needs."
+        )
+
+        st.write(
+            "• 🏃 Stay physically active and maintain a healthy lifestyle."
+        )
+
+        st.write(
+            "• 🩺 Continue regular health checkups."
+        )
+
+>>>>>>> a966bea7242938b8c332100cd5d444f566fd1f0c
